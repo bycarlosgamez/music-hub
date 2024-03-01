@@ -1,5 +1,4 @@
-const CLIENT_ID = '1d42b98d48da424182c2b79a5ed0d22f';
-const CLIENT_SECRET = 'ebe8189364c645aa8077c1cf023a170f';
+import { CLIENT_ID, CLIENT_SECRET } from '../../apiKeys';
 
 const getAccessToken = () => {
   let authParams = {
