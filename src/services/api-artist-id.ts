@@ -1,17 +1,15 @@
 const apiArtsitID = async (token: string, searchInput: string) => {
-  let artistParams = {
+  const artistParams = {
     method: 'GET',
     headers: {
       // 'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   };
+  const url = `https://api.spotify.com/v1/search?q=${searchInput}&type=artist&limit=1`;
 
   // get req artist id by seachinput
-  let res = await fetch(
-    `https://api.spotify.com/v1/search?q=${searchInput}&type=artist&limit=1`,
-    artistParams
-  );
+  const res = await fetch(url, artistParams);
 
   return res;
 
