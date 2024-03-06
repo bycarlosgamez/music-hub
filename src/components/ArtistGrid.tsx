@@ -1,5 +1,6 @@
-import { Text } from '@chakra-ui/react';
+import { SimpleGrid, Text } from '@chakra-ui/react';
 import useFetchArtists from '../hooks/useFetchArtists';
+import ArtistCard from './ArtistCard';
 
 interface Props {
   accessToken: string;
@@ -8,13 +9,22 @@ interface Props {
 const ArtistGrid = ({ accessToken }: Props) => {
   const { artists, error } = useFetchArtists(accessToken);
 
+  console.log(artists);
+
   return (
     <>
       {!artists && <Text>{error}</Text>}
-      <ul>
+
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        padding={10}
+        spacing={10}
+      >
         {artists &&
-          artists.map((artist) => <li key={artist.id}>{artist.name}</li>)}
-      </ul>
+          artists.map((artist) => (
+            <ArtistCard key={artist.id} artist={artist} />
+          ))}
+      </SimpleGrid>
     </>
   );
 };
