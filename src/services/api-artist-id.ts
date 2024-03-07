@@ -12,7 +12,7 @@ const apiArtsitID = async (token: string, searchInput: string) => {
 
   const res = await fetch(url, artistParams);
 
-  return res;
+  return res.json();
 };
 
 export default apiArtsitID;

@@ -9,7 +9,7 @@ const getAccessToken = async () => {
   const url = 'https://accounts.spotify.com/api/token';
   const res = await fetch(url, authParams);
 
-  return res;
+  return res.json();
 };
 
 export default getAccessToken;

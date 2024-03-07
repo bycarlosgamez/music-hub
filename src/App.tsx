@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     getAccessToken()
-      .then((res) => res.json())
       .then((data) => setAccessToken(data.access_token))
       .catch((err) => console.log(err.message));
   }, []);
