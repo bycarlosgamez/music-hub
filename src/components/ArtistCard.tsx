@@ -1,4 +1,7 @@
-import { Card, CardBody, Heading, Image, Text } from '@chakra-ui/react';
+import { FaSpotify } from 'react-icons/fa';
+import { Card, CardBody, Heading, Image, Link, Icon } from '@chakra-ui/react';
+
+import GenreTagList from './GenreTagList';
 
 interface Props {
   artist: Artist;
@@ -28,10 +31,11 @@ const ArtistCard = ({ artist }: Props) => {
       <Image src={artist.images[0].url} />
       <CardBody>
         <Heading fontSize='2xl'>{artist.name}</Heading>
-        {artist.genres.map((genre) => (
-          <Text>{genre}</Text>
-        ))}
-        <Text>{artist.external_urls.spotify}</Text>
+        <GenreTagList genres={artist.genres} />
+        <Link href={artist.external_urls.spotify} color='teal.500' isExternal>
+          <Icon as={FaSpotify} mx={2} mb={-0.5} />
+          Listen on Spotify
+        </Link>
       </CardBody>
     </Card>
   );
