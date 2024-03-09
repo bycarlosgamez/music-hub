@@ -2,6 +2,7 @@ import { SimpleGrid, Text } from '@chakra-ui/react';
 import useFetchArtists from '../hooks/useFetchArtists';
 import ArtistCard from './ArtistCard';
 import ArtistCardWireframe from './ArtistCardWireframe';
+import CardContainer from './CardContainer';
 
 interface Props {
   accessToken: string;
@@ -24,11 +25,15 @@ const ArtistGrid = ({ accessToken }: Props) => {
       >
         {isLoading &&
           wireframes.map((wireframe) => (
-            <ArtistCardWireframe key={wireframe} />
+            <CardContainer>
+              <ArtistCardWireframe key={wireframe} />
+            </CardContainer>
           ))}
         {artists &&
           artists.map((artist) => (
-            <ArtistCard key={artist.id} artist={artist} />
+            <CardContainer>
+              <ArtistCard key={artist.id} artist={artist} />
+            </CardContainer>
           ))}
       </SimpleGrid>
     </>
