@@ -3,6 +3,7 @@ import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import ArtistGrid from './components/ArtistGrid';
 import getAccessToken from './services/api-access-token';
+import GenreList from './components/GenreList';
 
 interface ArtistQuery {
   searchText: string;
@@ -20,6 +21,7 @@ function App() {
       .catch((err) => console.log(err.message));
   }, []);
 
+  console.log(accessToken);
   return (
     <Grid
       templateAreas={{
@@ -35,7 +37,9 @@ function App() {
         />
       </GridItem>
       <Show above='lg'>
-        <GridItem area='aside'>Aside</GridItem>
+        <GridItem area='aside'>
+          <GenreList accessToken={accessToken} />
+        </GridItem>
       </Show>
       <GridItem area='main'>
         <ArtistGrid accessToken={accessToken} />
