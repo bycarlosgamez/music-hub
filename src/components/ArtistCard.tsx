@@ -37,7 +37,7 @@ interface Artist {
 const ArtistCard = ({ artist }: Props) => {
   return (
     <Card>
-      <Image src={artist.images[0].url} />
+      <Image src={artist.images[0].url} borderTopRadius={10} />
       <CardBody>
         <Heading fontSize='2xl'>{artist.name}</Heading>
         <GenreTagList genres={artist.genres} />
