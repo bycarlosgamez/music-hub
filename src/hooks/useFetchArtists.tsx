@@ -3,7 +3,7 @@ import apiArtistID from '../services/api-artist-id';
 import getRelatedArtsits from '../services/api-artist-related';
 
 const useFetchArtists = (accessToken: string) => {
-  const searchInput = 'rezn';
+  const searchInput = 'yob';
   const [artistID, setArtsitID] = useState('');
   const [artists, setArtists] = useState<any[]>([]);
   const [error, setError] = useState('');

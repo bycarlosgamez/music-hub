@@ -7,7 +7,7 @@ interface Props {
 const PopularityScore = ({ popularity }: Props) => {
   let color = popularity > 75 ? 'green' : popularity > 60 ? 'yellow' : 'red';
   return (
-    <Text fontWeight='bold' fontSize='10px'>
+    <Text fontWeight='bold' fontSize='10px' textAlign='right'>
       Popularity
       <Badge
         ml='1'

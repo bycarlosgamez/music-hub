@@ -1,3 +1,4 @@
+import { List, ListItem, Text } from '@chakra-ui/react';
 import useFetchGenres from '../hooks/useFetchGenres';
 
 interface Props {
@@ -10,11 +11,13 @@ const GenreList = ({ accessToken }: Props) => {
   console.log(genres);
 
   return (
-    <ul>
+    <List>
       {genres.map((genre) => (
-        <li key={genre}>{genre}</li>
+        <ListItem key={genre} paddingY='5px'>
+          <Text fontSize='lg'>{genre}</Text>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 

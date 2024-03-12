@@ -6,11 +6,7 @@ interface Props {
 }
 
 const CardContainer = ({ children }: Props) => {
-  return (
-    <Box width='300px' borderRadius={10}>
-      {children}
-    </Box>
-  );
+  return <Box borderRadius={10}>{children}</Box>;
 };
 
 export default CardContainer;

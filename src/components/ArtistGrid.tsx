@@ -19,9 +19,9 @@ const ArtistGrid = ({ accessToken }: Props) => {
       {!artists && <Text>{error}</Text>}
 
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-        padding={10}
-        spacing={10}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+        padding='10px'
+        spacing={5}
       >
         {isLoading &&
           wireframes.map((wireframe) => (
