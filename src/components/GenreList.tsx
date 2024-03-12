@@ -1,4 +1,4 @@
-import { List, ListItem, Text } from '@chakra-ui/react';
+import { List, ListItem, Text, Spinner } from '@chakra-ui/react';
 import useFetchGenres from '../hooks/useFetchGenres';
 
 interface Props {
@@ -6,7 +6,10 @@ interface Props {
 }
 
 const GenreList = ({ accessToken }: Props) => {
-  const { genres } = useFetchGenres(accessToken);
+  const { genres, isLoading, error } = useFetchGenres(accessToken);
+
+  if (error) return null;
+  if (isLoading) return <Spinner />;
 
   console.log(genres);
 
