@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import apiClient from '../services/api-client';
+import useGenres from '../hooks/useGenres';
 
 import { List, ListItem, Spinner, Button, Icon } from '@chakra-ui/react';
 import { FaChevronRight } from 'react-icons/fa';
@@ -8,30 +8,8 @@ interface Props {
   accessToken: string;
 }
 
-interface Genre {
-  genre: string;
-}
-
-interface FetchGenresResponse {
-  genres: string[];
-}
-
 const GenreList = ({ accessToken }: Props) => {
-  const [genres, setGenres] = useState<Genre[]>([]);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    apiClient
-      .get<FetchGenresResponse, any>('/recommendations/available-genre-seeds', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((res) => setGenres(res.data.genres))
-      .catch((err) => setError(err.message));
-  }, [accessToken]);
-
-  console.log(genres);
+  const { genres, error } = useGenres(accessToken);
 
   // if (isLoading) return <Spinner />;
 

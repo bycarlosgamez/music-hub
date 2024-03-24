@@ -1,31 +1,36 @@
 import { useState, useEffect } from 'react';
-import apiRecommendations from '../services/api-recommendations';
 import apiClient from '../services/api-client';
+import { CanceledError } from 'axios';
 
 interface Genre {
   genre: string;
 }
 
 interface FetchGenresResponse {
-  genres: Genre[];
+  genres: string[];
 }
 
 const useGenres = (accessToken: string) => {
-  const controller = new AbortController();
-
   const [genres, setGenres] = useState<Genre[]>([]);
-  // const [error, setError] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
+    const controller = new AbortController();
     apiClient
-      .get<FetchGenresResponse>('/recommendations/available-genre-seeds', {
+      .get<FetchGenresResponse, any>('/recommendations/available-genre-seeds', {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+        signal: controller.signal,
       })
-      .then((res) => setGenres(res.data.genres)).catch(err instanceof );
-  }, []);
+      .then((res) => setGenres(res.data.genres))
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        setError(err.message);
+      });
+  }, [accessToken]);
 
-  return { Genres, error, isLoading };
+  return { genres, error };
 };
+
+export default useGenres;
