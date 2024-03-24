@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
-// import ArtistGrid from './components/ArtistGrid';
+import ArtistGrid from './components/ArtistGrid';
 import getAccessToken from './services/api-access-token';
 import GenreList from './components/GenreList';
 
@@ -11,7 +11,6 @@ interface ArtistQuery {
 
 function App() {
   const [accessToken, setAccessToken] = useState('');
-  // const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const [artistQuery, setArtistQuery] = useState<ArtistQuery>(
     {} as ArtistQuery
   );
@@ -43,16 +42,11 @@ function App() {
       </GridItem>
       <Show above='lg'>
         <GridItem area='aside' paddingX={5}>
-          {/* <GenreList
-            accessToken={accessToken}
-            onSelectGenre={setSelectedGenre}
-          /> */}
-          aside
+          <GenreList accessToken={accessToken} />
         </GridItem>
       </Show>
       <GridItem area='main'>
-        <GenreList accessToken={accessToken} />
-        {/* <ArtistGrid accessToken={accessToken} /> */}
+        <ArtistGrid accessToken={accessToken} />
       </GridItem>
     </Grid>
   );
