@@ -8,9 +8,9 @@ interface Props {
 const GenreChipList = ({ genres }: Props) => {
   return (
     <Wrap spacing={2} my={2}>
-      {genres.map(({ genre }) => (
-        <Tag key={genre} size='sm' borderRadius='full'>
-          {genre}
+      {genres.map((genre) => (
+        <Tag key={genre.toString()} size='sm' borderRadius='full'>
+          {genre.toString()}
         </Tag>
       ))}
     </Wrap>

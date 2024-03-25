@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import useGenres from '../hooks/useGenres';
 
 import { List, ListItem, Spinner, Button, Icon } from '@chakra-ui/react';

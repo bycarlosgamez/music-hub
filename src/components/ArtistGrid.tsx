@@ -1,4 +1,5 @@
-import { SimpleGrid, Text } from '@chakra-ui/react';
+import { SimpleGrid, Text, Box } from '@chakra-ui/react';
+import Masonry from 'react-masonry-css';
 import ArtistCard from './ArtistCard';
 import ArtistCardWireframe from './ArtistCardWireframe';
 import CardContainer from './CardContainer';
@@ -14,14 +15,24 @@ const ArtistGrid = ({ accessToken }: Props) => {
 
   // const wireframes = [1, 2, 3, 4, 5, 6];
 
+  const breakpoints = {
+    default: 4,
+    320: 1,
+    768: 2,
+    960: 3,
+    1200: 3,
+  };
+
   return (
     <>
       {!artists && <Text>{error}</Text>}
 
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding='10px'
-        spacing={5}
+      <Box p={2}>Main Artist Card Component</Box>
+
+      <Masonry
+        breakpointCols={breakpoints}
+        className='my-masonry-grid'
+        columnClassName='my-masonry-grid_column'
       >
         {/* {wireframes.map((wireframe) => (
           <CardContainer>
@@ -34,7 +45,7 @@ const ArtistGrid = ({ accessToken }: Props) => {
               <ArtistCard artist={artist} />
             </CardContainer>
           ))}
-      </SimpleGrid>
+      </Masonry>
     </>
   );
 };
