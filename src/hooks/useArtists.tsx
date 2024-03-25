@@ -38,6 +38,7 @@ const useArtists = (accessToken: string) => {
 
   useEffect(() => {
     const controller = new AbortController();
+
     setIsLoading(true);
     apiClient
       .get(`/search?q=${searchInput}&type=artist&limit=1`, {
@@ -53,6 +54,7 @@ const useArtists = (accessToken: string) => {
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setIsLoading(false);
       });
 
     return () => controller.abort();
@@ -60,6 +62,7 @@ const useArtists = (accessToken: string) => {
 
   useEffect(() => {
     const controller = new AbortController();
+
     setIsLoading(true);
     apiClient
       .get<FetchArtistsResponse>(`/artists/${artistID}/related-artists`, {
@@ -75,6 +78,7 @@ const useArtists = (accessToken: string) => {
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setIsLoading(false);
       });
 
     return () => controller.abort();

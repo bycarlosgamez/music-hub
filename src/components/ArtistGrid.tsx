@@ -1,10 +1,9 @@
-import { SimpleGrid, Text, Box } from '@chakra-ui/react';
+import { Text, Box, Container } from '@chakra-ui/react';
 import Masonry from 'react-masonry-css';
 import ArtistCard from './ArtistCard';
 import ArtistCardWireframe from './ArtistCardWireframe';
 import CardContainer from './CardContainer';
 import useArtists from '../hooks/useArtists';
-// import SearchInput from './SearchInput';
 
 interface Props {
   accessToken: string;
@@ -12,9 +11,7 @@ interface Props {
 
 const ArtistGrid = ({ accessToken }: Props) => {
   const { artists, error, isLoading } = useArtists(accessToken);
-
-  // const wireframes = [1, 2, 3, 4, 5, 6];
-
+  const wireframes = [1, 2, 3, 4, 5, 6, 7, 8];
   const breakpoints = {
     default: 4,
     320: 1,
@@ -24,7 +21,7 @@ const ArtistGrid = ({ accessToken }: Props) => {
   };
 
   return (
-    <>
+    <Container maxW='100%'>
       {!artists && <Text>{error}</Text>}
 
       <Box p={2}>Main Artist Card Component</Box>
@@ -34,11 +31,13 @@ const ArtistGrid = ({ accessToken }: Props) => {
         className='my-masonry-grid'
         columnClassName='my-masonry-grid_column'
       >
-        {/* {wireframes.map((wireframe) => (
-          <CardContainer>
-            <ArtistCardWireframe key={wireframe} />
-          </CardContainer>
-        ))} */}
+        {isLoading &&
+          wireframes.map((wireframe) => (
+            <CardContainer>
+              <ArtistCardWireframe key={wireframe} />
+            </CardContainer>
+          ))}
+
         {artists &&
           artists.map((artist) => (
             <CardContainer key={artist.id}>
@@ -46,7 +45,7 @@ const ArtistGrid = ({ accessToken }: Props) => {
             </CardContainer>
           ))}
       </Masonry>
-    </>
+    </Container>
   );
 };
 
