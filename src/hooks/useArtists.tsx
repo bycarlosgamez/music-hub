@@ -12,11 +12,15 @@ interface URLS {
   spotify: string;
 }
 
-interface Artist {
+export interface Genre {
+  genre: string;
+}
+
+export interface Artist {
   id: number;
   name: string;
   images: Images[];
-  genres: string[];
+  genres: Genre[];
   external_urls: URLS;
   popularity: number;
 }

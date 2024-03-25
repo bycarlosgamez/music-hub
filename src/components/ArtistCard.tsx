@@ -10,28 +10,10 @@ import {
 } from '@chakra-ui/react';
 import GenreTagList from './GenreTagList';
 import PopularityScore from './PopularityScore';
+import { Artist } from '../hooks/useArtists';
 
 interface Props {
   artist: Artist;
-}
-
-interface Images {
-  height: number;
-  url: string;
-  width: number;
-}
-
-interface URLS {
-  spotify: string;
-}
-
-interface Artist {
-  id: number;
-  name: string;
-  images: Images[];
-  genres: string[];
-  external_urls: URLS;
-  popularity: number;
 }
 
 const ArtistCard = ({ artist }: Props) => {

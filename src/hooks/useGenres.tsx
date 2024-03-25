@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import apiClient from '../services/api-client';
 import { CanceledError } from 'axios';
-
-interface Genre {
-  genre: string;
-}
+import { Genre } from '../hooks/useArtists';
 
 interface FetchGenresResponse {
-  genres: string[];
+  genres: Genre[];
 }
 
 const useGenres = (accessToken: string) => {
