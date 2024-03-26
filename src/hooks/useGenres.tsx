@@ -10,9 +10,12 @@ interface FetchGenresResponse {
 const useGenres = (accessToken: string) => {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
+
+    setIsLoading(true);
     apiClient
       .get<FetchGenresResponse, any>('/recommendations/available-genre-seeds', {
         headers: {
@@ -20,14 +23,18 @@ const useGenres = (accessToken: string) => {
         },
         signal: controller.signal,
       })
-      .then((res) => setGenres(res.data.genres))
+      .then((res) => {
+        setGenres(res.data.genres);
+        setIsLoading(false);
+      })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setIsLoading(false);
       });
   }, [accessToken]);
 
-  return { genres, error };
+  return { genres, error, isLoading };
 };
 
 export default useGenres;

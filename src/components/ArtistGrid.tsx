@@ -32,8 +32,8 @@ const ArtistGrid = ({ accessToken }: Props) => {
         columnClassName='my-masonry-grid_column'
       >
         {isLoading &&
-          wireframes.map((wireframe) => (
-            <CardContainer>
+          wireframes.map((wireframe, i) => (
+            <CardContainer key={i}>
               <ArtistCardWireframe key={wireframe} />
             </CardContainer>
           ))}

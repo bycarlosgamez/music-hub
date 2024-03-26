@@ -8,9 +8,10 @@ interface Props {
 }
 
 const GenreList = ({ accessToken }: Props) => {
-  const { genres, error } = useGenres(accessToken);
+  const { genres, error, isLoading } = useGenres(accessToken);
 
-  // if (isLoading) return <Spinner />;
+  if (error) return;
+  if (isLoading) return <Spinner />;
 
   return (
     <List>
