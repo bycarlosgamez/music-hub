@@ -4,6 +4,7 @@ import ArtistCard from './ArtistCard';
 import ArtistCardWireframe from './ArtistCardWireframe';
 import CardContainer from './CardContainer';
 import useArtists from '../hooks/useArtists';
+import Header from './Header';
 
 interface Props {
   accessToken: string;
@@ -23,6 +24,7 @@ const ArtistGrid = ({ accessToken }: Props) => {
   return (
     <Container maxW='100%'>
       {!artists && <Text>{error}</Text>}
+      {artists.length === 0 && <Header />}
 
       <Box p={2}>Main Artist Card Component</Box>
 
