@@ -26,3 +26,5 @@ dist-ssr
 
 apiKeys.ts
 useFetch.tsx
+
+.env

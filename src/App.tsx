@@ -1,27 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import ArtistGrid from './components/ArtistGrid';
-import getAccessToken from './services/api-access-token';
-import GenreList from './components/GenreList';
+// import GenreList from './components/GenreList';
 
-interface ArtistQuery {
+export interface ArtistQuery {
   searchText: string;
 }
 
+export interface AccessToken {
+  accessToken: string;
+}
+
 function App() {
-  const [accessToken, setAccessToken] = useState('');
   const [artistQuery, setArtistQuery] = useState<ArtistQuery>(
     {} as ArtistQuery
   );
 
-  useEffect(() => {
-    getAccessToken()
-      .then((data) => setAccessToken(data.access_token))
-      .catch((err) => console.log(err.message));
-  }, []);
-
-  console.log(accessToken);
   return (
     <Grid
       templateAreas={{
@@ -42,11 +37,11 @@ function App() {
       </GridItem>
       <Show above='lg'>
         <GridItem area='aside' paddingX={5}>
-          <GenreList accessToken={accessToken} />
+          {/* <GenreList /> */}
         </GridItem>
       </Show>
       <GridItem area='main'>
-        <ArtistGrid accessToken={accessToken} />
+        <ArtistGrid />
       </GridItem>
     </Grid>
   );

@@ -1,13 +1,10 @@
 import useGenres from '../hooks/useGenres';
-
 import { List, ListItem, Spinner, Button, Icon } from '@chakra-ui/react';
 import { FaChevronRight } from 'react-icons/fa';
+import { useTokenContext } from '../hooks/useTokenContext';
 
-interface Props {
-  accessToken: string;
-}
-
-const GenreList = ({ accessToken }: Props) => {
+const GenreList = () => {
+  const accessToken = useTokenContext();
   const { genres, error, isLoading } = useGenres(accessToken);
 
   if (error) return;
